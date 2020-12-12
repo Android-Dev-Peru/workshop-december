@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        DP SECTION
+    -->
+    <dimen name="dimen_5_1">5dp</dimen>
+    <dimen name="dimen_5_3">15dp</dimen>
+    <dimen name="dimen_5_4">20dp</dimen>
+    <dimen name="dimen_5_8">40dp</dimen>
+    <dimen name="dimen_5_10">50dp</dimen>
+    <dimen name="dimen_5_12">60dp</dimen>
+    <dimen name="stroke_with_buttons_dimen">0.75dp</dimen>
+
+    <!--
+       END  DP SECTION
+    -->
+    <!--
+        SP SECTION
+    -->
+    <dimen name="sp_5_4">20sp</dimen>
+    <dimen name="sp_5_3">15sp</dimen>
+
+    <!-- END SP SECTION -->
+
+
+</resources>

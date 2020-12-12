@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WorkShop3</string>
+    <string name="hello_world">Hola mundo</string>
+    <string name="demo_resource_string">TextView</string>
+    <string name="demo_string_two">Hola Comunidad</string>
+    <string name="log_in_user">Inicio de sesión usuario</string>
+    <string name="or">o</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_password">No te acuerdas tu contraseña?</string>
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="register">Registrarme</string>
+</resources>
