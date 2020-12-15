@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.MotionEvent
-import android.view.View
 import android.widget.FrameLayout
 import kotlin.math.abs
 import kotlin.random.Random
@@ -44,10 +43,10 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
         center = windowWidth / 2
         startAngle = randomByRange(-5, 5)
         rotation = startAngle.toFloat()
+
         setOnTouchListener OnTouchListener@{ _, motionEvent ->
             when (motionEvent.action) {
-                MotionEvent.ACTION_DOWN -> {
-                }
+                MotionEvent.ACTION_DOWN -> { }
 
                 MotionEvent.ACTION_MOVE -> {
                     xCoordinate = motionEvent.rawX.toInt()
