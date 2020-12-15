@@ -7,7 +7,6 @@ import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.widget.FrameLayout
 import kotlin.math.abs
-import kotlin.random.Random
 
 /**
  * @author Eduardo Medina
@@ -41,25 +40,27 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
     private fun setupUI() {
         calculateDisplayDimensions()
         center = windowWidth / 2
-        startAngle = randomByRange(-5, 5)
+        startAngle = (-5).randomByRange(5)
+
         rotation = startAngle.toFloat()
 
         setOnTouchListener OnTouchListener@{ _, motionEvent ->
             when (motionEvent.action) {
-                MotionEvent.ACTION_DOWN -> { }
+                MotionEvent.ACTION_DOWN -> {
+                }
 
                 MotionEvent.ACTION_MOVE -> {
                     xCoordinate = motionEvent.rawX.toInt()
                     yCoordinate = motionEvent.rawY.toInt()
 
-                    x = (xCoordinate - center + 40).toFloat()
+                    x = (xCoordinate - center + OFFSET_X).toFloat()
                     y = (yCoordinate - windowHeight / 2).toFloat()
 
                     angle = if (xCoordinate >= center) {
-                        ((xCoordinate - center) * (Math.PI / 32)).toFloat()
+                        ((xCoordinate - center) * (Math.PI / ROTATION_ANGLE)).toFloat()
 
                     } else {
-                        ((xCoordinate - center) * (Math.PI / 32)).toFloat()
+                        ((xCoordinate - center) * (Math.PI / ROTATION_ANGLE)).toFloat()
                     }
                     rotation = angle
                 }
@@ -73,8 +74,8 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
                     xCoordinate = motionEvent.rawX.toInt()
                     yCoordinate = motionEvent.rawY.toInt()
 
-                    x = 20 * DisplayUtils.getCurrentDIP(context)
-                    y = 10 * DisplayUtils.getCurrentDIP(context)
+                    x = DEFAULT_OFFSET_X * context.density()
+                    y = DEFAULT_OFFSET_Y * context.density()
                     rotation = startAngle.toFloat()
                     angle = 0.0f
                 }
@@ -90,12 +91,11 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
         windowHeight = metrics.heightPixels
     }
 
-    private fun randomByRange(min: Int, max: Int): Int {
-        val range = max - min + 1
-        return Random.nextInt(range) + min
-    }
-
     companion object {
         const val MAX_ANGLE = 40
+        const val ROTATION_ANGLE = 32
+        const val OFFSET_X = 40
+        const val DEFAULT_OFFSET_X = 20
+        const val DEFAULT_OFFSET_Y = 10
     }
 }

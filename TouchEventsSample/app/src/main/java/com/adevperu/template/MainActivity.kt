@@ -2,24 +2,35 @@ package com.adevperu.template
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.children
 
 class MainActivity : AppCompatActivity() {
 
+    private val container by lazy {
+        findViewById<FrameLayout>(R.id.flayContainer)
+    }
+
     private fun clearViews() {
-        findViewById<FrameLayout>(R.id.flayContainer).removeAllViews()
+        container.removeAllViews()
+    }
+
+    private fun addCardView(view: View) {
+        container.addView(view)
+    }
+
+    private fun removeCardView(view: View) {
+        container.removeView(view)
     }
 
     private fun addCardView() {
         val view = CardView(this)
-        findViewById<FrameLayout>(R.id.flayContainer).addView(view)
-        view.addListener {
-            findViewById<FrameLayout>(R.id.flayContainer).removeView(it)
-        }
+        addCardView(view.also { itCardView ->
+            itCardView.addListener {
+                removeCardView(itCardView)
+            }
+        })
     }
 
     private fun populateCards() {
