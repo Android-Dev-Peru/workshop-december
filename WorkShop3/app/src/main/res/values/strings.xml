@@ -10,4 +10,6 @@
     <string name="forgot_password">No te acuerdas tu contraseña?</string>
     <string name="log_in">Iniciar Sesión</string>
     <string name="register">Registrarme</string>
+    <string name="man">Masculino</string>
+    <string name="woman">Femenino</string>
 </resources>
