@@ -1,9 +1,7 @@
 package com.adevperu.template
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.widget.FrameLayout
 import kotlin.math.abs
@@ -85,10 +83,8 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
     }
 
     private fun calculateDisplayDimensions() {
-        val metrics = DisplayMetrics()
-        (context as Activity).windowManager?.defaultDisplay?.getMetrics(metrics)
-        windowWidth = metrics.widthPixels
-        windowHeight = metrics.heightPixels
+        windowWidth = context.viewWidthPixel()
+        windowHeight = context.viewHeightPixel()
     }
 
     companion object {

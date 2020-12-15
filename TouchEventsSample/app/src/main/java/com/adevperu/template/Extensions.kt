@@ -4,7 +4,6 @@ import android.content.Context
 import kotlin.random.Random
 
 fun Context.density() = resources.displayMetrics.density
-
 /*
     private fun calculateDisplayDimensions() {
         val metrics = DisplayMetrics()
@@ -13,6 +12,9 @@ fun Context.density() = resources.displayMetrics.density
         windowHeight = metrics.heightPixels
     }
  */
+
+fun Context.viewWidthPixel() = resources.displayMetrics.widthPixels
+fun Context.viewHeightPixel() = resources.displayMetrics.heightPixels
 
 /*
 private fun randomByRange(min: Int, max: Int): Int {
