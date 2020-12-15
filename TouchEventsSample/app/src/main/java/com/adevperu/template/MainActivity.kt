@@ -10,10 +10,6 @@ import androidx.core.view.children
 
 class MainActivity : AppCompatActivity() {
 
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun clearViews() {
         findViewById<FrameLayout>(R.id.flayContainer).removeAllViews()
     }
@@ -21,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private fun addCardView() {
         val view = CardView(this)
         findViewById<FrameLayout>(R.id.flayContainer).addView(view)
+        view.addListener {
+            findViewById<FrameLayout>(R.id.flayContainer).removeView(it)
+        }
     }
 
     private fun populateCards() {
@@ -34,15 +33,12 @@ class MainActivity : AppCompatActivity() {
             clearViews()
             populateCards()
         }
+        populateCards()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ui()
-    }
-
-    companion object {
-        const val MESSAGE = "Hello Kotlin by Android Dev Perú !"
     }
 }

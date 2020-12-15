@@ -1,29 +1,38 @@
 package com.adevperu.template
 
+import android.app.Activity
 import android.content.Context
-import android.graphics.Matrix
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.MotionEvent
+import android.view.View
 import android.widget.FrameLayout
 import kotlin.math.abs
 import kotlin.random.Random
 
+/**
+ * @author Eduardo Medina
+ */
 class CardView @kotlin.jvm.JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-defStyleAttr: Int = 0
+    defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val viewMatrix = Matrix()
-    private var xCoord: Int = 0
-    private var yCoord: Int = 0
+    private var xCoordinate: Int = 0
+    private var yCoordinate: Int = 0
     private var center: Int = 0
     private var angle: Float = 0.0f
     private var startAngle: Int = 0
 
     private var windowWidth: Int = 0
     private var windowHeight: Int = 0
+
+    private var listener: (CardView) -> Unit = {}
+
+    fun addListener(callback: (view: CardView) -> Unit) {
+        listener = callback
+    }
 
     init {
         inflate(context, R.layout.layout_card, this)
@@ -41,32 +50,32 @@ defStyleAttr: Int = 0
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    xCoord = motionEvent.rawX.toInt()
-                    yCoord = motionEvent.rawY.toInt()
+                    xCoordinate = motionEvent.rawX.toInt()
+                    yCoordinate = motionEvent.rawY.toInt()
 
-                    x = (xCoord - center + 40).toFloat()
-                    y = (yCoord - windowHeight / 2).toFloat()
+                    x = (xCoordinate - center + 40).toFloat()
+                    y = (yCoordinate - windowHeight / 2).toFloat()
 
-                    angle = if (xCoord >= center) {
-                        ((xCoord - center) * (Math.PI / 32)).toFloat()
+                    angle = if (xCoordinate >= center) {
+                        ((xCoordinate - center) * (Math.PI / 32)).toFloat()
 
                     } else {
-                        ((xCoord - center) * (Math.PI / 32)).toFloat()
+                        ((xCoordinate - center) * (Math.PI / 32)).toFloat()
                     }
                     rotation = angle
                 }
 
                 MotionEvent.ACTION_UP -> {
 
-                    if (abs(angle) > 40) {
-                        //listener?.removeCard(this@CardFragment)
+                    if (abs(angle) > MAX_ANGLE) {
+                        listener(this@CardView)
                         return@OnTouchListener true
                     }
-                    xCoord = motionEvent.rawX.toInt()
-                    yCoord = motionEvent.rawY.toInt()
+                    xCoordinate = motionEvent.rawX.toInt()
+                    yCoordinate = motionEvent.rawY.toInt()
 
-                    x = 0f//20 * DisplayUtils.getCurrentDIP(activity)
-                    y = 0f//10 * DisplayUtils.getCurrentDIP(activity)
+                    x = 20 * DisplayUtils.getCurrentDIP(context)
+                    y = 10 * DisplayUtils.getCurrentDIP(context)
                     rotation = startAngle.toFloat()
                     angle = 0.0f
                 }
@@ -77,13 +86,17 @@ defStyleAttr: Int = 0
 
     private fun calculateDisplayDimensions() {
         val metrics = DisplayMetrics()
-        //context.windowManager?.defaultDisplay?.getMetrics(metrics)
-        //windowWidth = metrics.widthPixels
-        //windowHeight = metrics.heightPixels
+        (context as Activity).windowManager?.defaultDisplay?.getMetrics(metrics)
+        windowWidth = metrics.widthPixels
+        windowHeight = metrics.heightPixels
     }
 
     private fun randomByRange(min: Int, max: Int): Int {
         val range = max - min + 1
         return Random.nextInt(range) + min
+    }
+
+    companion object {
+        const val MAX_ANGLE = 40
     }
 }

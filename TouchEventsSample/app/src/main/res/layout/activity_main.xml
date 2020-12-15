@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="Reset"
+        android:layout_marginRight="10dp"
         android:id="@+id/btnReset"/>
     <FrameLayout
         android:layout_width="match_parent"
