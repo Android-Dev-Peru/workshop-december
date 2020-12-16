@@ -8,3 +8,8 @@ Workshop Android - December 2020
 4. Recyclerview [Link](https://github.com/Android-Dev-Peru/workshop-december/tree/04-recyclerview)
 5. Fragments [Link](https://github.com/Android-Dev-Peru/workshop-december/tree/05-fragments)
 6. Data [Link](https://github.com/Android-Dev-Peru/workshop-december/tree/06-data)
+
+
+## Diapositivas UI-Eventos
+
+* https://docs.google.com/presentation/d/16wv6YdvJizexOByqsK2SPDpNqtnaWi8aRM40HdzGlJE/edit?usp=sharing

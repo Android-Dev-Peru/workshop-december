@@ -38,7 +38,7 @@ class CardView @kotlin.jvm.JvmOverloads constructor(
     private fun setupUI() {
         calculateDisplayDimensions()
         center = windowWidth / 2
-        startAngle = (-5).randomByRange(5)
+        startAngle = (-15).randomByRange(15)
 
         rotation = startAngle.toFloat()
 
